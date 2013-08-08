@@ -1,5 +1,5 @@
 # coding: utf-8
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 
 
 class Config(object):
@@ -19,7 +19,7 @@ class Config(object):
         self.parser = SafeConfigParser()
         self.parser.readfp(open(config_file))
 
-    def get(self, option, default=u'', cast=unicode):
+    def get(self, option, default=u'', cast=str):
         """
         Return the value for option or default option is not defined.
         """
@@ -47,7 +47,7 @@ class Config(object):
         if not self.parser.has_section(self.SECTION):
             self.parser.add_section(self.SECTION)
 
-        self.parser.set(self.SECTION, option, unicode(value))
+        self.parser.set(self.SECTION, option, str(value))
 
     def remove(self, option):
         """
